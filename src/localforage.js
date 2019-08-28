@@ -1,7 +1,4 @@
 import idbDriver from './drivers/indexeddb';
-import websqlDriver from './drivers/websql';
-import localstorageDriver from './drivers/localstorage';
-import serializer from './utils/serializer';
 import Promise from './utils/promise';
 import executeCallback from './utils/executeCallback';
 import executeTwoCallbacks from './utils/executeTwoCallbacks';
@@ -15,29 +12,16 @@ const DefinedDrivers = {};
 const DriverSupport = {};
 
 const DefaultDrivers = {
-    INDEXEDDB: idbDriver,
-    WEBSQL: websqlDriver,
-    LOCALSTORAGE: localstorageDriver
+    INDEXEDDB: idbDriver
 };
 
-const DefaultDriverOrder = [
-    DefaultDrivers.INDEXEDDB._driver,
-    DefaultDrivers.WEBSQL._driver,
-    DefaultDrivers.LOCALSTORAGE._driver
-];
+const DefaultDriverOrder = [DefaultDrivers.INDEXEDDB._driver];
 
 const OptionalDriverMethods = ['dropInstance'];
 
-const LibraryMethods = [
-    'clear',
-    'getItem',
-    'iterate',
-    'key',
-    'keys',
-    'length',
-    'removeItem',
-    'setItem'
-].concat(OptionalDriverMethods);
+const LibraryMethods = ['getItem', 'removeItem', 'setItem'].concat(
+    OptionalDriverMethods
+);
 
 const DefaultConfig = {
     description: '',
@@ -269,12 +253,6 @@ class LocalForage {
 
         executeTwoCallbacks(getDriverPromise, callback, errorCallback);
         return getDriverPromise;
-    }
-
-    getSerializer(callback) {
-        const serializerPromise = Promise.resolve(serializer);
-        executeTwoCallbacks(serializerPromise, callback);
-        return serializerPromise;
     }
 
     ready(callback) {
