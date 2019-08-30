@@ -21,10 +21,7 @@ module.exports = exports = function(grunt) {
     var babelModuleIdProvider = function getModuleId(moduleName) {
         var files = {
             'src/localforage': 'localforage',
-            'src/utils/serializer': 'localforageSerializer',
-            'src/drivers/indexeddb': 'asyncStorage',
-            'src/drivers/localstorage': 'localStorageWrapper',
-            'src/drivers/websql': 'webSQLStorage'
+            'src/drivers/indexeddb': 'asyncStorage'
         };
 
         return files[moduleName] || moduleName.replace('src/', '');
@@ -41,10 +38,7 @@ module.exports = exports = function(grunt) {
             dist: {
                 files: {
                     'build/es5src/localforage.js': 'src/localforage.js',
-                    'build/es5src/utils/serializer.js': 'src/utils/serializer.js',
-                    'build/es5src/drivers/indexeddb.js': 'src/drivers/indexeddb.js',
-                    'build/es5src/drivers/localstorage.js': 'src/drivers/localstorage.js',
-                    'build/es5src/drivers/websql.js': 'src/drivers/websql.js'
+                    'build/es5src/drivers/indexeddb.js': 'src/drivers/indexeddb.js'
                 }
             }
         },

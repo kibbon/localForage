@@ -1,6 +1,6 @@
 {
-  "name": "localforage",
-  "author": "Mozilla",
+  "name": "@byted/minify-localforage",
+  "author": "ludan.kibbon",
   "license": "Apache-2.0",
   "description": "Offline storage, improved.",
   "keywords": [
